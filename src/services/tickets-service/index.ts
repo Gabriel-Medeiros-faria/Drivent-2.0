@@ -1,7 +1,5 @@
 import ticketRepository from "../../repositories/tickets-repository/index"
 import { notFoundError } from "@/errors";
-import { exclude } from "@/utils/prisma-utils";
-
 
 async function getUniqueTicket(userId: number) {
     try{
@@ -13,10 +11,21 @@ async function getUniqueTicket(userId: number) {
     }
 }
 
+async function getTicketTypesService(){
+    try{
+        let ticketType = await ticketRepository.findMany()
+        return ticketType
+
+    }catch{
+        throw notFoundError()
+    }
+}
+
 
 
 const ticketService = {
-    getUniqueTicket
+    getUniqueTicket,
+    getTicketTypesService
 }
 
 export default ticketService

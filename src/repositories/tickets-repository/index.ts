@@ -13,8 +13,14 @@ async function findUnique(userId: number) {
         }
     })
 }
+
+async function findMany(){
+    return prisma.ticketType.findMany()
+}
+
 const ticketRepository = {
-    findUnique
+    findUnique,
+    findMany
 }
 
 export default ticketRepository

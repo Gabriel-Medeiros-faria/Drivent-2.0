@@ -13,3 +13,12 @@ export async function getTicketsFromUsers(req: AuthenticatedRequest, res: Respon
     return res.status(httpStatus.NOT_FOUND).send({});
   }
 }
+
+export async function getTicketTypes(req: AuthenticatedRequest, res: Response) {
+  try{
+    const ticket = await ticketService.getTicketTypesService()
+    return res.status(httpStatus.OK).send(ticket);
+  }catch(error){
+    return res.status(httpStatus.NOT_FOUND).send([]);
+  }
+}
